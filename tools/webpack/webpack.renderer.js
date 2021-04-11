@@ -6,7 +6,7 @@ module.exports = {
     rules: require('./webpack.rules'),
   },
   plugins: [new ForkTsCheckerWebpackPlugin(), 
-    // new MonacoWebpackPlugin() // uncomment me for errors!
+    new MonacoWebpackPlugin() // uncomment me for errors!
   ],
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css'],
