@@ -1,5 +1,5 @@
 import { app, BrowserWindow } from 'electron';
-import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } from 'electron-devtools-installer';
+import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -13,6 +13,8 @@ const createWindow = (): void => {
     width: 800,
     height: 600,
     show: false,
+    darkTheme: true,
+    autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: false,
       enableRemoteModule: false,
@@ -47,8 +49,8 @@ app.on('activate', () => {
 });
 
 if (process.env.NODE_ENV === 'development') {
-  void app.whenReady().then(async () => {
-    await installExtension([REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS])
+  void app.whenReady().then(() => {
+    installExtension(REACT_DEVELOPER_TOOLS)
       .then((name) => console.log('Added Extension: ', name))
       .catch((err) => console.log('An error occurred: ', err));
   });
